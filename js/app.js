@@ -2,6 +2,7 @@ function iniciarApp() {
 
 
     const selectCategorias = document.querySelector('#categorias');
+    selectCategorias.addEventListener('change', seleccionarCategoria)
 
     obtenerCategorias();
 
