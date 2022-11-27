@@ -151,6 +151,11 @@ function iniciarApp() {
         
     }
 
+    function agregarFavorito(receta) {
+        const favoritos = JSON.parse(localStorage.getItem('favoritos')) ?? [];
+        localStorage.setItem('favoritos', JSON.stringify([...favoritos, receta]));
+    }
+
     function limpiarHtml(selector){
         while(selector.firstChild){
             selector.removeChild(selector.firstChild)
