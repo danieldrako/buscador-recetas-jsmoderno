@@ -1,6 +1,5 @@
 function iniciarApp() {
 
-
     const selectCategorias = document.querySelector('#categorias');
     selectCategorias.addEventListener('change', seleccionarCategoria)
 
@@ -28,32 +27,37 @@ function iniciarApp() {
         const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoria}`;
         fetch(url)
             .then(respuesta => respuesta.json())
-            .then(resultado => console.log(resultado.meals))
+            .then(resultado => mostrarRecetas(resultado.meals))
+    }
+
+    function mostrarRecetas(recetas = []) {
+        
+        // Iterar en los resultados
+        recetas.forEach(receta => {
+            const { idMeal, strMeal, strMealThumb } = receta;
+
+            const recetaContenedor = document.createElement('DIV');
+            recetaContenedor.classList.add('col-md-4');
+
+            const recetaCard = document.createElement('DIV');
+            recetaCard.classList.add('card', 'mb-4');
+
+            const recetaImagen = document.createElement('IMG');
+            recetaImagen.classList.add('card-img-top');
+            recetaImagen.alt = `Imagen de la receta ${strMeal ?? receta.titulo}`;
+            recetaImagen.src = strMealThumb ?? receta.img;
+
+            const recetaCardBody = document.createElement('DIV');
+            recetaCardBody.classList.add('card-body');
+
+            console.log(recetaImagen)
+        })
+    
     }
 }
 
+
 document.addEventListener('DOMContentLoaded', iniciarApp);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
